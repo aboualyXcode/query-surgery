@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Query Surgery: advanced SQL optimization, hands-on</title>
+  <meta name="description" content="22 SQL optimization challenges in the browser. Rewrite slow queries and design indexes against an instrumented engine with EXPLAIN ANALYZE, B-tree indexes and a cost meter.">
+  <meta name="theme-color" content="#f3f6f5">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@400;500;600;700;800&family=Red+Hat+Mono:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="top">
+    <a class="brand" href="./"><img src="assets/favicon.svg" alt="" width="28" height="28"><span>Query <b>Surgery</b></span></a>
+    <span class="tagline">Same answer. Less work.</span>
+    <div class="progress"><span id="progress-text"></span><span class="bar"><i id="progress-bar"></i></span></div>
+    <a class="guide" href="https://github.com/aboualyXcode/query-surgery/tree/main/docs" target="_blank" rel="noopener">Guide ↗</a>
+  </header>
+
+  <div class="layout">
+    <nav class="side" aria-label="Challenges"><div id="tracks"></div></nav>
+    <main class="main">
+      <section class="card brief" aria-labelledby="title">
+        <div class="meta"><span id="track" class="track"></span><span id="level" class="pill"></span><span id="mode" class="pill mode"></span><span id="status" class="pill"></span></div>
+        <h1 id="title"></h1>
+        <p id="scenario" class="scenario"></p>
+        <div id="task" class="task"></div>
+        <div id="help" class="help"></div>
+        <details class="schema"><summary>Schema and indexes</summary><div id="schema"></div></details>
+      </section>
+
+      <section class="card meter-card" aria-label="Work meter">
+        <div class="meter-head"><span class="label">Work</span><span id="meter-summary" class="meter-summary"></span></div>
+        <div id="meter" class="meter"></div>
+      </section>
+
+      <section class="card" aria-labelledby="orig-h">
+        <div class="card-h"><span id="orig-h" class="label"></span></div>
+        <div id="original"></div>
+      </section>
+
+      <section class="card editor-card" aria-label="Your SQL">
+        <div class="card-h">
+          <span class="label" id="editor-label">Your query</span>
+          <span class="kbd"><kbd>Ctrl</kbd>+<kbd>Enter</kbd> run · <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Enter</kbd> submit</span>
+          <button id="reset" class="btn quiet" type="button">Reset</button>
+          <button id="run" class="btn" type="button">Run</button>
+          <button id="submit" class="btn primary" type="button">Submit</button>
+        </div>
+        <div class="editor">
+          <pre id="gutter" class="gutter" aria-hidden="true"></pre>
+          <div class="code-wrap"><pre id="hl" class="hl" aria-hidden="true"></pre><textarea id="sql" spellcheck="false" autocapitalize="off" autocomplete="off" wrap="off" aria-label="SQL"></textarea></div>
+        </div>
+      </section>
+
+      <section id="verdict" class="verdict" aria-live="polite" hidden></section>
+      <section id="output" class="card output" aria-live="polite" hidden></section>
+    </main>
+  </div>
+
+  <script src="js/sql/parser.js"></script>
+  <script src="js/sql/functions.js"></script>
+  <script src="js/sql/engine.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/challenges.js"></script>
+  <script src="js/runner.js"></script>
+  <script src="js/ui.js"></script>
+</body>
+</html>
