@@ -1,0 +1,26 @@
+# Verifies the engine, the planner and every challenge on each push.
+name: Tests
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: SQL semantics
+        run: node tests/engine.test.js
+      - name: Results match SQLite, with and without indexes
+        run: python3 tests/differential_sqlite.py
+      - name: Planner behaviour
+        run: node tests/planner.test.js
+      - name: Every challenge is sound
+        run: node tests/challenges.test.js
